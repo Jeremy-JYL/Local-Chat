@@ -1,8 +1,10 @@
 import threading
 import socket
+import random
 
 ENCODING = 'utf-8'
-host = '127.0.0.1'# localhost
+LOGGING = True
+host = '0.0.0.0'# localhost
 port = 38120
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -20,8 +22,15 @@ def handle(client):
     while True:
         try:
             message = client.recv(1024)
+            if message.decode(ENCODING) == "ONLINE":
+                client.send('\n###Online###'.encode(ENCODING))
+                for nickname_send in nicknames:
+                    client.send(f'{nickname_send}\n'.encode(ENCODING))
+            elif LOGGING:
+                with open("log.log", "a") as log:
+                    log.write(message.decode(ENCODING) + "\n")
+                broadcast(message)
 
-            broadcast(message)
         except:
             index = clients.index(client)
             clients.remove(client)
