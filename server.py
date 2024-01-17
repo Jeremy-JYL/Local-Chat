@@ -1,6 +1,5 @@
 import threading
 import socket
-import random
 
 ENCODING = 'utf-8'
 LOGGING = True
