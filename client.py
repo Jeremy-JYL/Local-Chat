@@ -3,7 +3,7 @@ import threading
 import datetime
 import os
 
-ENCODEING = 'utf-8'
+ENCODING = 'utf-8'
 
 nickname = input("Choose a nickname: ")
 
@@ -19,9 +19,9 @@ def receive():
         if stop_thread:
             break
         try:
-            message = client.recv(1024).decode(ENCODEING)
+            message = client.recv(1024).decode(ENCODING)
             if message == 'NICK':
-                client.send(nickname.encode(ENCODEING))
+                client.send(nickname.encode(ENCODING))
             else:
                 print(message)
         except:
@@ -42,10 +42,10 @@ def write():
             else:
                 print('\n' * 100)
         elif msg == '/online' or msg == '/o':
-            client.send('ONLINE'.encode(ENCODEING))
+            client.send('ONLINE'.encode(ENCODING))
         else:
             message = f'[{datetime.datetime.now().strftime("%Y-%m-%d %X")}] {nickname}: {msg}'
-            client.send(message.encode(ENCODEING))
+            client.send(message.encode(ENCODING))
 
 
 receive_thread = threading.Thread(target=receive)
