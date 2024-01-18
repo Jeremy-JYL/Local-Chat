@@ -15,6 +15,7 @@ Client:
 # Commands
 
 /clear: Clear Screen
+
 /online: Check people is online
 
 # Compatible Server
