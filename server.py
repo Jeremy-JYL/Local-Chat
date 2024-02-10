@@ -28,6 +28,7 @@ def handle(client):
             elif LOGGING:
                 with open("log.log", "a") as log:
                     log.write(message.decode(ENCODING) + "\n")
+            else:
                 broadcast(message)
 
         except:
